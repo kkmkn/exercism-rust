@@ -1,18 +1,20 @@
 pub fn raindrops(n: u32) -> String {
-    let is_factor = (n % 3 == 0, n % 5 == 0, n % 7 == 0);
-    let n = n.to_string();
-    let mut result: Vec<&str> = vec![];
-    if is_factor.0 {
-        result.push("Pling")
+    let is_factor = |number: u32| n % number == 0;
+    let mut result = String::new();
+
+    if is_factor(3) {
+        result.push_str("Pling")
     }
-    if is_factor.1 {
-        result.push("Plang")
+    if is_factor(5) {
+        result.push_str("Plang")
     }
-    if is_factor.2 {
-        result.push("Plong")
+    if is_factor(7) {
+        result.push_str("Plong")
     }
-    if is_factor == (false, false, false) {
-        result.push(&n[..])
+
+    if result.is_empty() {
+        result = n.to_string();
     }
-    result.into_iter().collect()
+
+    result
 }
